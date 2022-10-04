@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Personal Portfolio Website</title>
+
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class="hero">
+            <nav>
+                <img src="logo.jpg" class="logo" height="70px" width="70px">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Service</a></li>
+                    <li><a href="#">Portfolio</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+                <a href="#" class="btn">Subcribe</a>
+            </nav>
+            <img src="chathurya.jpg" width="320px" alt="My Picture">
+            <div class="content">
+                <span class="title">A Student of University Of Moratuwa</span>
+                <h1>Hello, I'm <span>Chathurya</span></h1>
+                <p>I'm a first year undergraduate student of <a href="https://uom.lk/" style="text-decoration: underline;">University of Moratuwa</a> who follow 
+                    an Information Technology and Management course. I like to web designing and programming too.</p>
+                <a href="#" class="btn">My Previous Works</a><br><br>
+                <a href="#" class="btn">My Tutorials</a><br><br>
+                <a href="Edu_Details.html" class="btn">My Education Details</a>
+            </div>
+        </div>
+
+        <script type="module">
+            // Import the functions you need from the SDKs you need
+            import { initializeApp } from "https://www.gstatic.com/firebasejs/9.10.0/firebase-app.js";
+            import { getDatabase ,set,ref} from "https://www.gstatic.com/firebasejs/9.10.0/firebase-database.js";
+    
+    
+            
+            const firebaseConfig = {
+              apiKey: "AIzaSyAAX953gaA74Nm0a9Cy6WbmUEwrWAkICGM",
+              authDomain: "batch21-c2ad5.firebaseapp.com",
+              databaseURL: "https://batch21-c2ad5-default-rtdb.asia-southeast1.firebasedatabase.app",
+              projectId: "batch21-c2ad5",
+              storageBucket: "batch21-c2ad5.appspot.com",
+              messagingSenderId: "176674292103",
+              appId: "1:176674292103:web:c3553ee0a95011ae53d322"
+            };
+          
+            // Initialize Firebase
+            const app = initializeApp(firebaseConfig);
+            const db = getDatabase(app);
+    
+            document.getElementById("userform").addEventListener("submit",function(e){
+    
+                e.preventDefault();
+                let userId= document.getElementById("id").value;
+                let name =document.getElementById("name").value;
+                let email = document.getElementById("email").value;
+                
+    
+                set(ref(db, 'users/' + userId), {
+                username: name,
+                email: email,
+               
+      });
+    
+    });
+    
+          </script>
+        <div style="padding: 50px; ">
+            <h3 style="font-weight: bold; text-align: left; margin: 10px;">Your Feedback</h3>
+            <form method="post" id="userform" onsubmit="validata()" action="#">
+                <label style="margin: 10px; padding: 10px;">Comment :</label><textarea class="textarea"></textarea></br>
+                <label style="margin: 10px; padding: 10px;">Email :</label><input type="text" id="mail" required></input></br>
+                <input style="margin: 10px; padding: 10px;" type="submit" value="Submit" onclick="validate()">
+            </form>
+        </div>
+    </body>
+</html>
